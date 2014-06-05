@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript" src="../assets/js/jquery-2.1.1.min.js"></script>
+<script>
+$.getJSON('http://whateverorigin.org/get?url=' + 
+        encodeURIComponent('http://www.jabong.com') + '&callback=?',
+        function(data){
+          $("#container").html(data.contents);
+});
+</script>
+<div id="container" style="position:relative;overflow:hidden;top:50px;">
+</div>
+</body>
+</html>

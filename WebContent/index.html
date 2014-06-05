@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>TagBuilder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+</head>
+<body style="padding:50px">
+<script type="text/javascript" src="../assets/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	var buildUL = function (parent, items) {
+		$.each(items,function () {
+		    if (this.label) {
+		       var li = $("<li><a>" + this.label + "</a></li>");
+		       li.appendTo(parent);
+		    }
+		});
+	}
+	var dropDownSelect = function(drpDownId,itemList){
+		itemList.click(function(){
+			var selText = $(this).text();
+			drpDownId.html(selText+' <span class="caret"></span>');
+		});
+	}
+	var parent = $(".dropdown-menu");
+	var items = [{"label":"Ecommerce"},{"label":"Hotel"},{"label":"Flight"},{"label":"Groupbuying"}];
+	buildUL(parent,items);
+	var verticalsdrpDownId = $("#dropdownMenu1");
+	var verticalsitemList = $("#dropdownMenu1List li a");
+	dropDownSelect(verticalsdrpDownId,verticalsitemList);
+	$('#source-modal').modal({"backdrop":"static"});	
+	$('#vizvrmbtn').click(function(){
+		if($("#vizId").val().indexOf("VIZVRM") !== -1){
+			$('#source-modal').modal('hide');
+		}
+		else{
+			$('#alertId').show();
+		}
+		
+		//$('#source-modal').modal('hide')
+	});
+}); 
+</script>
+<div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <img class="img-responsive" alt="Responsive image" src="../assets/logo/vizury.png" width="15%"></img>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <div class="nav navbar-nav navbar-right">
+           <div style="color:#FFFFFF">
+            <h4>Tag Builder</h4>
+           </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+<div class="container">
+      <div class="page-header" id="viz_id">
+        <div class="row">
+          <div class="col-lg-6">
+            <h1>VIZVRM2222 <small>Tag Implementation</small></h1>
+          </div>
+        </div>
+      </div>
+      <div class="bs-component">
+	      <h3>Select Vertical</h3>
+	      <div class="dropdown">
+	       <button class="btn btn-primary dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" style="padding:7px 43px">--Select--
+		      <span class="caret"></span>
+		   </button>
+		   <ul id="dropdownMenu1List" class="dropdown-menu" style="cursor:pointer">
+           </ul>
+	      </div>
+	      	     
+      </div>
+		<div class="page-header" id="banner">
+		<h3>Ecommerce-Segments</h3>
+			<div class="bs-component">
+			  <ul class="nav nav-pills">
+			    <li class="active"><a href="#">e200</a></li>
+			    <li><a href="#">e205</a></li>
+			    <li><a href="#">e300</a></li>
+			    <li><a href="#">e400</a></li>
+			    <li><a href="#">e500</a></li>
+			  </ul>
+			</div>
+		</div>
+	<div class="bs-component">
+	<div class="row">
+		<div class="col-lg-3 col-lg-offset-0" >
+              <form class="bs-component">
+                <div class="form-group">
+                  <label class="control-label" for="autoParam">Add Params</label>
+                  <div class="input-group">
+                  <input class="form-control" id="autoParam" type="text" placeholder="Type Param Name..." >
+                  <span class="input-group-btn">
+                  <button type="button" class="btn btn-primary">Add Param</button>
+                  </span>
+                  </div>
+                  
+                </div>
+
+                </form>
+
+          </div>
+     </div>
+     </div>
+     <div id="source-modal" class="modal fade">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              
+              <h4 class="modal-title">Enter Campaign ID</h4>
+            </div>
+            <div class="modal-body">
+            
+            	<form class="bs-component">
+                <div class="form-group ">
+                  <div class="input-group">
+                  <input class="form-control" id="vizId" type="text" placeholder="VIZVRMXXXX..." >
+                  <span class="input-group-btn">
+                  <button id="vizvrmbtn" type="button" class="btn btn-primary">SUBMIT</button>
+                  </span>
+                  </div>
+                  
+                </div>
+
+                </form>
+               <div id="alertId" class="alert alert-danger" style="display:none">
+				  <strong> Add Valid VIZVRM ID </strong>and try submitting again.
+				</div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+</body>
+</html>
